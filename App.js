@@ -1,20 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Login from './src/Login';
+import Home from './src/pages/Home';
+import CustomCamera from './src/CustomCamera';
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='login' >
+        <Stack.Screen name="login" component={Login} options={{
+          headerShown:false
+        }} />
+        <Stack.Screen name="home" component={Home}  options={{
+          headerTitleStyle:{
+             color:'white'
+          },
+          headerStyle:{          
+            backgroundColor:'#2B3038',           
+            
+          },
+        
+        }} />
+
+        <Stack.Screen name="customCamera" component={CustomCamera} options={{
+          
+        }} />
+
+      </Stack.Navigator>
+    </NavigationContainer>
+
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
